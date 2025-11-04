@@ -11,7 +11,7 @@ class StringTracker
         StringTracker();
         ~StringTracker();
 
-        void addString(const string& str);
+        bool addString(const string& str);
         void print(ostream& out) const;
 
         // other functions
