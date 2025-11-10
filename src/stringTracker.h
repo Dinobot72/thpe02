@@ -9,8 +9,17 @@ using namespace std;
 class StringTracker
 {
     public:
-        StringTracker();
-        ~StringTracker();
+        StringTracker() : head(nullptr) {}
+        ~StringTracker() 
+        {
+            Node* current = head;
+            while (current != nullptr) {
+                Node* nextNode = current->next;
+                delete current;
+                current = nextNode;
+            }
+        }
+        
 
         // Teammate 1's functions
         bool addString( const string& str );

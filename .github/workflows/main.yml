@@ -1,0 +1,42 @@
+name: C++ CI
+
+# This action will trigger on every push and pull request to your main branch
+on:
+  push:
+    branches: [ "main" ] # Adjust if your main branch is called "master"
+  pull_request:
+    branches: [ "main" ] # Adjust if your main branch is called "master"
+
+jobs:
+  build:
+    # Use the latest Ubuntu virtual machine
+    runs-on: ubuntu-latest
+
+    steps:
+    # 1. Check out your repository code
+    - uses: actions/checkout@v4
+
+    # 2. Install dependencies (cmake, g++, and Catch2)
+    # Your CMakeLists.txt needs Catch2, so we install libcatch2-dev
+    - name: Install dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y cmake g++ libcatch2-dev
+
+    # 3. Configure CMake
+    # This creates the build directory and prepares the build
+    - name: Configure CMake
+      run: cmake -B build -S .
+
+    # 4. Build the project
+    # This runs 'make' (or equivalent) inside the build directory
+    - name: Build
+      run: cmake --build build
+
+    # 5. Run the tests
+    # This runs 'ctest' inside the build directory, which will
+    # execute your 'strtest' executable and run all Catch2 tests.
+    - name: Run tests
+      run: |
+        cd build
+        ctest --output-on-failure
