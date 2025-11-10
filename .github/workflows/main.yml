@@ -10,7 +10,7 @@ on:
 jobs:
   build:
     # Use the latest Ubuntu virtual machine
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
 
     steps:
     # 1. Check out your repository code

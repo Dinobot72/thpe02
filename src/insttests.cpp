@@ -14,7 +14,7 @@ TEST_CASE("StringTracker::addString - add to empty list")
     retValue = myTracker.addString( addValue );
     REQUIRE( retValue );
     
-    // myTracker.print( sout );
-    // REQUIRE( sout.str() == "The Banana (1)" );
+    myTracker.print( sout );
+    REQUIRE( sout.str() == "The Banana (1)" );
     
 }
