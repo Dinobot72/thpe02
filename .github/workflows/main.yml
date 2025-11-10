@@ -21,7 +21,7 @@ jobs:
     - name: Install dependencies
       run: |
         sudo apt-get update
-        sudo apt-get install -y cmake g++ libcatch2-dev
+        sudo apt-get install -y cmake g++ catch2
 
     # 3. Configure CMake
     # This creates the build directory and prepares the build
