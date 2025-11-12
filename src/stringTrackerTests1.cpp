@@ -1,6 +1,5 @@
 #include <sstream>
 #include "stringTracker.h"
-#include <catch2/catch_test_macros.hpp> 
 
 // addString tests
 TEST_CASE("StringTracker::addString - add 'pickle' to empty list")
@@ -103,6 +102,17 @@ TEST_CASE("StringTracker::incrementCount - increment 'pickle' to count of 7")
     REQUIRE( sout.str() == "pickle (7)" );
 }
 
+TEST_CASE("StringTracker::incrementCount - fail to increment 'pickle'")
+{
+    bool retValue;
+    string addValue = "pickle";
+
+    StringTracker myTracker;
+
+    retValue = myTracker.incrementCount( addValue );
+    REQUIRE( !retValue );
+}
+
 // decrementCount tests
 TEST_CASE("StringTracker::dencrementCount - dencrement 'pickle' to count of 2")
 {
@@ -124,7 +134,7 @@ TEST_CASE("StringTracker::dencrementCount - dencrement 'pickle' to count of 2")
     REQUIRE( sout.str() == "pickle (2)" );
 }
 
-TEST_CASE("StringTracker::decrementCount - dencrement 'mayo' to count of 1")
+TEST_CASE("StringTracker::decrementCount - dencrement 'mayo' to count of 0")
 {
     bool retValue;
     string addValue[4] = {"cheese", "mayo", "sandwich", "pickle"};
@@ -142,8 +152,19 @@ TEST_CASE("StringTracker::decrementCount - dencrement 'mayo' to count of 1")
     REQUIRE( retValue );
 
     myTracker.print( sout );
-    REQUIRE( sout.str() == "cheese (1),mayo (0),pickle (1),sandwich (1)" );
+    REQUIRE( sout.str() == "cheese (1),pickle (1),sandwich (1)" );
 
+}
+
+TEST_CASE("StringTracker::decrementCount - fail to decrement 'pickle'")
+{
+    bool retValue;
+    string addValue = "pickle";
+
+    StringTracker myTracker;
+
+    retValue = myTracker.decrementCount( addValue );
+    REQUIRE( !retValue );
 }
 
 // print tests
@@ -214,7 +235,7 @@ TEST_CASE("StringTracker::removeString - remove 'pickle'")
     REQUIRE( sout.str() == "cheese (1),mayo (1),sandwich (1)" );
 }
 
-TEST_CASE("StringTracker::removeString - remove 'mayo' from empty list")
+TEST_CASE("StringTracker::removeString - fail to remove 'mayo' from empty list")
 {
     bool retValue;
     string stringValue = "mayo";

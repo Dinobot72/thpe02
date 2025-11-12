@@ -3,7 +3,7 @@
 
 #include <string>
 #include <iostream>
-// #include <catch2/catch_test_macros.hpp> 
+#include <catch2/catch_test_macros.hpp> 
 using namespace std;
 
 class StringTracker
@@ -28,16 +28,16 @@ class StringTracker
         bool findString( const string str ) const;
         bool incrementCount( const string str );
         bool decrementCount( const string str );
-        bool empty() const;
+        int getCount( const string str ) const;
 
 
         // Teammate 2's functions
-        int getCount( const string str ) const;
         int getMaximumcount() const;
         int size() const;
         void clear();
         void printPhrases( ostream& out ) const;
         void printCounters( ostream& out) const;
+        bool empty() const;
 
     private:
         struct Node

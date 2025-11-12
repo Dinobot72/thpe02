@@ -5,19 +5,18 @@ bool StringTracker::addString( const string& str )
     Node* current = head;
     Node* previous = nullptr;
 
-    // traverse through the list until 
+    // traverse through the list until value is greater than string and list is null
     while ( current != nullptr && current->value < str )
     {
         previous = current;
         current = current->next;
     }
 
-    while ( current != nullptr && current->value == str )
+    // if the string already exists, increment its count and return
+    if ( current != nullptr && current->value == str )
     {
-        if (current->value == str) {
-            current->count++;
-            return true;
-        }
+        current->count++;
+        return true;
     }
 
     // Create a new node
@@ -34,7 +33,7 @@ bool StringTracker::addString( const string& str )
     newNode->count = 1;
     newNode->next = current;
 
-    // if list is empty new node is head assign to head
+    // if list is empty or inserting at the beginning, new node is head
     if (previous == nullptr) {
         head = newNode;
     } else { // if list is not empty then 
@@ -128,7 +127,13 @@ bool StringTracker::decrementCount( const string str )
     while ( current != nullptr )
     {
         if (current->value == str) {
-            current->count--;
+            current->count--; // Decrement the count
+            // If count becomes 0, remove the node
+            if (current->count == 0)
+            {
+                // This re-uses the logic from your removeString function
+                return removeString(str);
+            }
             return true;
         }
         current = current->next;
