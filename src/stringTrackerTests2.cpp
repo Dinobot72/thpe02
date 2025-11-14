@@ -22,6 +22,20 @@ TEST_CASE("StringTracker::empty() - check empty for non-empty list")
     REQUIRE( !retValue );
 }
 
+TEST_CASE("StringTracker::empty() - check empty for empty and non-empty list")
+{
+    bool retValue;
+    StringTracker myTracker;
+
+    retValue = myTracker.empty();
+    REQUIRE( retValue );
+
+    myTracker.addString("Bananas");
+
+    retValue = myTracker.empty();
+    REQUIRE( !retValue );
+}
+
 TEST_CASE("StringTracker::size() - check size for empty list")
 {
     StringTracker myTracker;
@@ -35,6 +49,17 @@ TEST_CASE("StringTracker::size() - check size for non-empty list")
     myTracker.addString("two");
     myTracker.addString("three");
     REQUIRE( myTracker.size() == 3 );
+}
+
+TEST_CASE("StringTracker::size() - check size for large non-empty list")
+{
+    int i;
+    StringTracker myTracker;
+    for (i = 0; i < 100; i++)
+    {
+        myTracker.addString(to_string(i));
+    }
+    REQUIRE( myTracker.size() == 100 );
 }
 
 TEST_CASE("StringTracker::clear() - clear an empty list")
@@ -51,6 +76,16 @@ TEST_CASE("StringTracker::clear() - clear a list with multiple items")
     myTracker.addString("one");
     myTracker.addString("two");
     myTracker.addString("three");
+
+    myTracker.clear();
+    REQUIRE( myTracker.empty() );
+    REQUIRE( myTracker.size() == 0 );
+}
+
+TEST_CASE("StringTracker::clear() - clear a list with 1 items")
+{
+    StringTracker myTracker;
+    myTracker.addString("one");
 
     myTracker.clear();
     REQUIRE( myTracker.empty() );
