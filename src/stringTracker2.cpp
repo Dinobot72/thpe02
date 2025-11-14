@@ -11,6 +11,7 @@ int StringTracker::getMaximumcount() const
     
     Node* current = head;
 
+    // going through linked list
     while ( current != nullptr )
     {
         if ( current->count > maxCount )
@@ -25,9 +26,11 @@ int StringTracker::getMaximumcount() const
 // Return number of nodes in the list.
 int StringTracker::size() const
 {
+    // variables
     int count = 0;
     Node* current = head;
 
+    // going through linked list
     while ( current != nullptr )
     {
         count++;
@@ -43,6 +46,7 @@ void StringTracker::clear()
 {
     Node* current = head;
 
+    // going through linked list
     while ( current != nullptr )
     {
         Node* nextNode = current->next;
@@ -57,8 +61,10 @@ void StringTracker::clear()
 // Print only the phrases (string values) in sorted order.
 void StringTracker::printPhrases( ostream& out ) const
 {
+    // setting pointer to head
     Node* current = head;
 
+    // going through linked list
     while ( current != nullptr )
     {
         out << current->value;
@@ -91,5 +97,6 @@ void StringTracker::printCounters( ostream& out ) const
 // True if list is empty. False if it isn't.
 bool StringTracker::empty() const
 {
+    // if empty this should return true, if it isn't then it returns false
     return head == nullptr;
 }
