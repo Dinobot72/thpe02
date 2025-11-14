@@ -23,21 +23,21 @@ TEST_CASE( "StringTracker::empty() - check empty for non-empty list" )
     REQUIRE( !retValue );
 }
 
-TEST_CASE( "StringTracker::empty() - add, clear, add, clear cycle" )
+TEST_CASE("StringTracker::empty() - check empty for empty and non-empty list")
 {
+    bool retValue;
     StringTracker myTracker;
 
-    myTracker.addString("X");
-    myTracker.clear();
-    myTracker.addString("Y");
-    myTracker.clear();
+    retValue = myTracker.empty();
+    REQUIRE( retValue );
 
-    REQUIRE( myTracker.empty() );
+    myTracker.addString("Bananas");
+
+    retValue = myTracker.empty();
+    REQUIRE( !retValue );
 }
 
-
-// size test cases
-TEST_CASE( "StringTracker::size() - check size for empty list" )
+TEST_CASE("StringTracker::size() - check size for empty list")
 {
     StringTracker myTracker;
     REQUIRE( myTracker.size() == 0 );
@@ -52,17 +52,18 @@ TEST_CASE( "StringTracker::size() - check size for non-empty list" )
     REQUIRE( myTracker.size() == 3 );
 }
 
-TEST_CASE( "StringTracker::size() - adding same string twice creates two nodes" )
+TEST_CASE("StringTracker::size() - check size for large non-empty list")
 {
+    int i;
     StringTracker myTracker;
-    myTracker.addString("repeat");
-    myTracker.addString("repeat");
-
-    REQUIRE( myTracker.size() == 2 );
+    for (i = 0; i < 100; i++)
+    {
+        myTracker.addString(to_string(i));
+    }
+    REQUIRE( myTracker.size() == 100 );
 }
 
-// clear test cases
-TEST_CASE( "StringTracker::clear() - clear an empty list" )
+TEST_CASE("StringTracker::clear() - clear an empty list")
 {
     StringTracker myTracker;
     myTracker.clear();
@@ -82,20 +83,17 @@ TEST_CASE( "StringTracker::clear() - clear a list with multiple items" )
     REQUIRE( myTracker.size() == 0 );
 }
 
-TEST_CASE( "StringTracker::clear() - calling clear repeatedly on empty list" )
+TEST_CASE("StringTracker::clear() - clear a list with 1 items")
 {
     StringTracker myTracker;
+    myTracker.addString("one");
 
     myTracker.clear();
-    myTracker.clear();
-    myTracker.clear();
-
     REQUIRE( myTracker.empty() );
     REQUIRE( myTracker.size() == 0 );
 }
 
-// get maximum count test cases
-TEST_CASE( "StringTracker::getMaximumcount() - empty list" )
+TEST_CASE("StringTracker::getMaximumcount() - empty list")
 {
     StringTracker myTracker;
     REQUIRE( myTracker.getMaximumcount() == 0 );

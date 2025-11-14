@@ -338,7 +338,26 @@ TEST_CASE( "StringTracker::findString - find 'pickle'" )
     REQUIRE( retValue );
 }
 
-TEST_CASE( "StringTracker::findString - doesn't find 'pickle'" )
+TEST_CASE( "StringTracker::findString - find 'Giant Chicken Lazer Monkeys'" )
+{
+    bool retValue;
+    string stringValue = "Giant Chicken Lazer Monkeys";
+    string addValue[4] = {"cheese", "mayo", "sandwich", "pickle"};
+
+    StringTracker myTracker;
+
+    myTracker.addString( addValue[0] );
+    myTracker.addString( addValue[1] );
+    myTracker.addString( addValue[2] );
+    myTracker.addString( addValue[3] );
+
+    myTracker.addString( stringValue );
+
+    retValue = myTracker.findString( stringValue );
+    REQUIRE( retValue );
+}
+
+TEST_CASE("StringTracker::findString - doesn't find 'pickle'")
 {
     bool retValue;
     string stringValue = "pickle";
