@@ -58,7 +58,7 @@ TEST_CASE("StringTracker::addString - add 'mayo' to list containing mayo")
     REQUIRE( retValue );
 
     myTracker.print( sout );
-    REQUIRE( sout.str() == "cheese (1),mayo (2),pickle (1),sandwich (1)" );
+    REQUIRE( sout.str() == "cheese (1),mayo (1),pickle (1),sandwich (1)" );
 }
 
 // incrementCount tests
@@ -152,7 +152,7 @@ TEST_CASE("StringTracker::decrementCount - dencrement 'mayo' to count of 0")
     REQUIRE( retValue );
 
     myTracker.print( sout );
-    REQUIRE( sout.str() == "cheese (1),pickle (1),sandwich (1)" );
+    REQUIRE( sout.str() == "cheese (1),mayo (0),pickle (1),sandwich (1)" );
 
 }
 
@@ -282,9 +282,12 @@ TEST_CASE("StringTracker::getCount - get count of 'pickle'  at count of 4")
     myTracker.addString( addValue[1] );
     myTracker.addString( addValue[2] );
     myTracker.addString( addValue[3] );
+    myTracker.incrementCount( addValue[3] );
+    myTracker.incrementCount( addValue[3] );
+    myTracker.incrementCount( addValue[3] );
 
     retValue = myTracker.getCount( addValue[3] );
-    REQUIRE( retValue == 1 );
+    REQUIRE( retValue == 4 );
 
 }
 
@@ -297,7 +300,7 @@ TEST_CASE("StringTracker::getCount - get count of 'mayo' at count of 2")
 
     myTracker.addString( addValue[0] );
     myTracker.addString( addValue[1] );
-    myTracker.addString( addValue[1] );
+    myTracker.incrementCount( addValue[1] );
     myTracker.addString( addValue[2] );
     myTracker.addString( addValue[3] );
 

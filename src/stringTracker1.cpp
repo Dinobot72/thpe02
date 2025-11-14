@@ -15,7 +15,6 @@ bool StringTracker::addString( const string& str )
     // if the string already exists, increment its count and return
     if ( current != nullptr && current->value == str )
     {
-        current->count++;
         return true;
     }
 
@@ -127,13 +126,7 @@ bool StringTracker::decrementCount( const string str )
     while ( current != nullptr )
     {
         if (current->value == str) {
-            current->count--; // Decrement the count
-            // If count becomes 0, remove the node
-            if (current->count == 0)
-            {
-                // This re-uses the logic from your removeString function
-                return removeString(str);
-            }
+            current->count--;
             return true;
         }
         current = current->next;
