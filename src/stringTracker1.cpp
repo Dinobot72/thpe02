@@ -43,11 +43,17 @@ bool StringTracker::addString( const string& str )
 
 void StringTracker::print( ostream& out ) const
 {
+    // create temporary node to traverse array
     Node *temp;
     temp = this->head;
+
+    // until the array is empty
     while( temp != nullptr )
     {
+        // print node
         out << temp->value << " (" << temp->count << ")";
+
+        // if node is not the end then add coma
         if ( temp->next != nullptr )
         {
             out << ",";
@@ -91,16 +97,21 @@ bool StringTracker::removeString( const string& str )
 
 bool StringTracker::findString( const string str ) const
 {
+    // create temporary node to traverse array
     Node *temp;
     temp = this->head;
+
+    // traverse until the node is empty
     while( temp != nullptr )
     {
+        // check if nodes value is the string we are looking for and retrun true
         if( temp->value == str )
             return true;
 
         temp = temp->next;
     }
 
+    // if string is not found, return false
     return false;
 }
 
@@ -108,14 +119,18 @@ bool StringTracker::incrementCount( const string str )
 {
     Node* current = head;
 
+    // traverse until the node is empty 
     while ( current != nullptr )
     {
+        // check if nodes value is the string we are looking for
+        // increment conut and retrun true
         if (current->value == str) {
             current->count++;
             return true;
         }
         current = current->next;
     }
+    // if string is not found, return false
     return false;
 }
 
@@ -123,14 +138,19 @@ bool StringTracker::decrementCount( const string str )
 {
     Node* current = head;
 
+    // traverse until the node is empty
     while ( current != nullptr )
     {
+        // check if nodes value is the string we are looking for
+        // decrement conut and retrun true
         if (current->value == str) {
             current->count--;
             return true;
         }
         current = current->next;
     }
+
+    // if string is not found, return false
     return false;
 }
 
@@ -139,14 +159,19 @@ int StringTracker::getCount( const string str ) const
     Node* current = head;
     int tempCount;
 
+    // traverse until the node is empty
     while ( current != nullptr )
     {
+        // check if nodes value is the string we are looking for
+        // get the conut and retrun the count
         if (current->value == str) {
             tempCount = current->count;
             return tempCount;
         }
         current = current->next;
     }
+
+    // if no count is found return 0
     return 0;
 
 }
