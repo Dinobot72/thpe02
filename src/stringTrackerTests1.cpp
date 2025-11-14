@@ -2,7 +2,7 @@
 #include "stringTracker.h"
 
 // addString tests
-TEST_CASE("StringTracker::addString - add 'pickle' to empty list")
+TEST_CASE( "StringTracker::addString - add 'pickle' to empty list" )
 {
     bool retValue;
     string addValue = "pickle";
@@ -18,7 +18,7 @@ TEST_CASE("StringTracker::addString - add 'pickle' to empty list")
     REQUIRE( sout.str() == "pickle (1)" );
 }
 
-TEST_CASE("StringTracker::addString - add 'sandwich' to list of 1")
+TEST_CASE( "StringTracker::addString - add 'sandwich' to list of 1" )
 {
     bool retValue;
     string addValue = "pickle";
@@ -39,7 +39,7 @@ TEST_CASE("StringTracker::addString - add 'sandwich' to list of 1")
     REQUIRE( sout.str() == "pickle (1),sandwich (1)" );
 }
 
-TEST_CASE("StringTracker::addString - add 'mayo' to list containing mayo")
+TEST_CASE( "StringTracker::addString - add 'mayo' to list containing mayo" )
 {
     bool retValue;
     string stringValue = "mayo";
@@ -62,7 +62,7 @@ TEST_CASE("StringTracker::addString - add 'mayo' to list containing mayo")
 }
 
 // incrementCount tests
-TEST_CASE("StringTracker::incrementCount - increment 'pickle' to count of 2")
+TEST_CASE( "StringTracker::incrementCount - increment 'pickle' to count of 2" )
 {
     bool retValue;
     string addValue = "pickle";
@@ -79,7 +79,7 @@ TEST_CASE("StringTracker::incrementCount - increment 'pickle' to count of 2")
     REQUIRE( sout.str() == "pickle (2)" );
 }
 
-TEST_CASE("StringTracker::incrementCount - increment 'pickle' to count of 7")
+TEST_CASE( "StringTracker::incrementCount - increment 'pickle' to count of 7" )
 {
     bool retValue;
     string addValue = "pickle";
@@ -102,7 +102,7 @@ TEST_CASE("StringTracker::incrementCount - increment 'pickle' to count of 7")
     REQUIRE( sout.str() == "pickle (7)" );
 }
 
-TEST_CASE("StringTracker::incrementCount - fail to increment 'pickle'")
+TEST_CASE( "StringTracker::incrementCount - fail to increment 'pickle'" )
 {
     bool retValue;
     string addValue = "pickle";
@@ -114,7 +114,7 @@ TEST_CASE("StringTracker::incrementCount - fail to increment 'pickle'")
 }
 
 // decrementCount tests
-TEST_CASE("StringTracker::dencrementCount - dencrement 'pickle' to count of 2")
+TEST_CASE( "StringTracker::dencrementCount - dencrement 'pickle' to count of 2" )
 {
     bool retValue;
     string addValue = "pickle";
@@ -134,7 +134,7 @@ TEST_CASE("StringTracker::dencrementCount - dencrement 'pickle' to count of 2")
     REQUIRE( sout.str() == "pickle (2)" );
 }
 
-TEST_CASE("StringTracker::decrementCount - dencrement 'mayo' to count of 0")
+TEST_CASE( "StringTracker::decrementCount - dencrement 'mayo' to count of 0" )
 {
     bool retValue;
     string addValue[4] = {"cheese", "mayo", "sandwich", "pickle"};
@@ -156,7 +156,7 @@ TEST_CASE("StringTracker::decrementCount - dencrement 'mayo' to count of 0")
 
 }
 
-TEST_CASE("StringTracker::decrementCount - fail to decrement 'pickle'")
+TEST_CASE( "StringTracker::decrementCount - fail to decrement 'pickle'" )
 {
     bool retValue;
     string addValue = "pickle";
@@ -168,7 +168,7 @@ TEST_CASE("StringTracker::decrementCount - fail to decrement 'pickle'")
 }
 
 // print tests
-TEST_CASE("StringTracker::print - print list of 4")
+TEST_CASE( "StringTracker::print - print list of 4" )
 {
     string stringValue = "mayo";
     string addValue[4] = {"cheese", "mayo", "sandwich", "pickle"};
@@ -187,7 +187,7 @@ TEST_CASE("StringTracker::print - print list of 4")
     REQUIRE( sout.str() == "cheese (1),mayo (1),pickle (1),sandwich (1)" );
 }
 
-TEST_CASE("StringTracker::print - print list of 1")
+TEST_CASE( "StringTracker::print - print list of 1" )
 {
     bool retValue;
     string stringValue = "mayo";
@@ -202,7 +202,7 @@ TEST_CASE("StringTracker::print - print list of 1")
     REQUIRE( sout.str() == "mayo (1)" );
 }
 
-TEST_CASE("StringTracker::print - print empty list")
+TEST_CASE( "StringTracker::print - print empty list" )
 {
     StringTracker myTracker;
     ostringstream sout;
@@ -213,7 +213,7 @@ TEST_CASE("StringTracker::print - print empty list")
 }
 
 // removeString tests
-TEST_CASE("StringTracker::removeString - remove 'pickle'")
+TEST_CASE( "StringTracker::removeString - remove 'pickle'" )
 {
     bool retValue;
     string stringValue = "pickle";
@@ -235,7 +235,7 @@ TEST_CASE("StringTracker::removeString - remove 'pickle'")
     REQUIRE( sout.str() == "cheese (1),mayo (1),sandwich (1)" );
 }
 
-TEST_CASE("StringTracker::removeString - fail to remove 'mayo' from empty list")
+TEST_CASE( "StringTracker::removeString - fail to remove 'mayo' from empty list" )
 {
     bool retValue;
     string stringValue = "mayo";
@@ -246,7 +246,7 @@ TEST_CASE("StringTracker::removeString - fail to remove 'mayo' from empty list")
     REQUIRE( !retValue );
 }
 
-TEST_CASE("StringTracker::removeString - remove 'pickle' to count of 1")
+TEST_CASE( "StringTracker::removeString - remove 'pickle' to count of 1" )
 {
     bool retValue;
     string stringValue = "pickle";
@@ -271,7 +271,7 @@ TEST_CASE("StringTracker::removeString - remove 'pickle' to count of 1")
 }
 
 // getCount tests
-TEST_CASE("StringTracker::getCount - get count of 'pickle'  at count of 4")
+TEST_CASE( "StringTracker::getCount - get count of 'pickle'  at count of 4" )
 {
     int retValue;
     string addValue[4] = {"cheese", "mayo", "sandwich", "pickle"};
@@ -291,7 +291,7 @@ TEST_CASE("StringTracker::getCount - get count of 'pickle'  at count of 4")
 
 }
 
-TEST_CASE("StringTracker::getCount - get count of 'mayo' at count of 2")
+TEST_CASE( "StringTracker::getCount - get count of 'mayo' at count of 2" )
 {
     int retValue;
     string addValue[4] = {"cheese", "mayo", "sandwich", "pickle"};
@@ -308,7 +308,7 @@ TEST_CASE("StringTracker::getCount - get count of 'mayo' at count of 2")
     REQUIRE( retValue == 2 );
 }
 
-TEST_CASE("StringTracker::getCount - fail to get count and return 0")
+TEST_CASE( "StringTracker::getCount - fail to get count and return 0" )
 {
     bool retValue;
     string addValue[4] = {"cheese", "mayo", "sandwich", "pickle"};
@@ -325,7 +325,7 @@ TEST_CASE("StringTracker::getCount - fail to get count and return 0")
 }
 
 // findString tests
-TEST_CASE("StringTracker::findString - find 'pickle'")
+TEST_CASE( "StringTracker::findString - find 'pickle'" )
 {
     bool retValue;
     string stringValue = "pickle";
@@ -338,7 +338,7 @@ TEST_CASE("StringTracker::findString - find 'pickle'")
     REQUIRE( retValue );
 }
 
-TEST_CASE("StringTracker::findString - doesn't find 'pickle'")
+TEST_CASE( "StringTracker::findString - doesn't find 'pickle'" )
 {
     bool retValue;
     string stringValue = "pickle";

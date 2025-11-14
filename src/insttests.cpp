@@ -1,7 +1,7 @@
 #include <sstream>
 #include "stringTracker.h"
 
-TEST_CASE("StringTracker::addString - RS add to empty list")
+TEST_CASE( "StringTracker::addString - RS add to empty list" )
 {
     bool retValue;
     string addValue = "The Banana";
@@ -18,7 +18,7 @@ TEST_CASE("StringTracker::addString - RS add to empty list")
     
 }
 
-TEST_CASE("StringTracker::addString - RS try duplicates being added to list")
+TEST_CASE( "StringTracker::addString - RS try duplicates being added to list" )
 {
     bool retValue;
     string addValue = "Bananas";

@@ -9,11 +9,12 @@ using namespace std;
 class StringTracker
 {
     public:
-        StringTracker() : head(nullptr) {}
+        StringTracker() : head( nullptr ) {}
         ~StringTracker() 
         {
             Node* current = head;
-            while (current != nullptr) {
+            while ( current != nullptr )
+            {
                 Node* nextNode = current->next;
                 delete current;
                 current = nextNode;

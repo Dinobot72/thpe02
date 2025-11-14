@@ -19,7 +19,7 @@ bool StringTracker::addString( const string& str )
     }
 
     // Create a new node
-    Node* newNode = new (nothrow) Node;
+    Node* newNode = new ( nothrow ) Node;
     
     // Check for new node creation failure
     if ( newNode == nullptr )
@@ -33,9 +33,11 @@ bool StringTracker::addString( const string& str )
     newNode->next = current;
 
     // if list is empty or inserting at the beginning, new node is head
-    if (previous == nullptr) {
+    if ( previous == nullptr )
+    {
         head = newNode;
-    } else { // if list is not empty then 
+    } 
+    else { // if list is not empty then 
         previous->next = newNode;
     }
     return true;
@@ -68,20 +70,20 @@ bool StringTracker::removeString( const string& str )
     Node* previous = nullptr;
 
     // Find the node to remove
-    while (current != nullptr && current->value != str)
+    while ( current != nullptr && current->value != str )
     {
         previous = current;
         current = current->next;
     }
 
     // If the string was not found
-    if (current == nullptr)
+    if ( current == nullptr )
     {
         return false;
     }
 
     // If the node to remove is the head
-    if (previous == nullptr)
+    if ( previous == nullptr )
     {
         head = current->next;
     }
@@ -124,7 +126,8 @@ bool StringTracker::incrementCount( const string str )
     {
         // check if nodes value is the string we are looking for
         // increment conut and retrun true
-        if (current->value == str) {
+        if ( current->value == str )
+        {
             current->count++;
             return true;
         }
@@ -143,7 +146,8 @@ bool StringTracker::decrementCount( const string str )
     {
         // check if nodes value is the string we are looking for
         // decrement conut and retrun true
-        if (current->value == str) {
+        if ( current->value == str )
+        {
             current->count--;
             return true;
         }
@@ -164,7 +168,8 @@ int StringTracker::getCount( const string str ) const
     {
         // check if nodes value is the string we are looking for
         // get the conut and retrun the count
-        if (current->value == str) {
+        if ( current->value == str )
+        {
             tempCount = current->count;
             return tempCount;
         }
