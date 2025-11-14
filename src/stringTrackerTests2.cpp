@@ -37,6 +37,8 @@ TEST_CASE("StringTracker::empty() - check empty for empty and non-empty list")
     REQUIRE( !retValue );
 }
 
+
+// size test cases
 TEST_CASE("StringTracker::size() - check size for empty list")
 {
     StringTracker myTracker;
@@ -63,6 +65,8 @@ TEST_CASE("StringTracker::size() - check size for large non-empty list")
     REQUIRE( myTracker.size() == 100 );
 }
 
+
+// clear test cases
 TEST_CASE("StringTracker::clear() - clear an empty list")
 {
     StringTracker myTracker;
@@ -93,6 +97,8 @@ TEST_CASE("StringTracker::clear() - clear a list with 1 items")
     REQUIRE( myTracker.size() == 0 );
 }
 
+
+// maximum test cases
 TEST_CASE("StringTracker::getMaximumcount() - empty list")
 {
     StringTracker myTracker;
