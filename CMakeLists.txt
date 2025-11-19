@@ -46,3 +46,15 @@ add_custom_target(CreateTGZ
     WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
     COMMENT "Create a tgz for submission"
 )
+
+# Build part 2 of the assignment
+add_executable( thpe02 )
+
+# add files
+target_sources( thpe02 PRIVATE src/stringTracker1.cpp )
+target_sources( thpe02 PRIVATE src/stringTracker2.cpp )
+target_sources( thpe02 PRIVATE src/thpe02.cpp )
+target_sources( thpe02 PRIVATE src/thpe02fn.cpp )
+
+
+target_compile_options( thpe02 PRIVATE -g -Wall -Werror -Wextra -Wshadow -Wpedantic -std=gnu++20)

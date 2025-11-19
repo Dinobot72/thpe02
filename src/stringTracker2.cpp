@@ -79,7 +79,6 @@ void StringTracker::printPhrases( ostream& out ) const
         if (firstChar != currentHeader) {
             if ( colCount != 0 )
             {
-                out << "colCount !=0" << endl;
                 colCount = 0;
             }
 
