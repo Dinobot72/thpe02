@@ -79,6 +79,7 @@ void StringTracker::printPhrases( ostream& out ) const
         if (firstChar != currentHeader) {
             if ( colCount != 0 )
             {
+                out << endl;
                 colCount = 0;
             }
 
@@ -88,14 +89,9 @@ void StringTracker::printPhrases( ostream& out ) const
 
             currentHeader = firstChar;
 
-            out << "************************************************************" << endl;
-            out << "* Phrases Starting With: " << firstChar << endl;
-            out << "************************************************************" << endl;
-            colCount = 0;
-        }
-
-        if (colCount > 0) {
-            out << " ";
+            out << "***************************************************************************" << endl;
+            out << "*  Phrases Starting With: " << firstChar << endl;
+            out << "***************************************************************************" << endl;
         }
 
         out << left << setw(25) << current->value;
@@ -109,7 +105,7 @@ void StringTracker::printPhrases( ostream& out ) const
         current = current->next;
     }
 
-    if (colCount > 0) {
+    if (colCount != 0) {
         out << endl;
     }
 }
@@ -118,6 +114,8 @@ void StringTracker::printPhrases( ostream& out ) const
 // Print only the counters (count values) in order.
 void StringTracker::printCounters( ostream& out ) const
 {
+    bool hasItems = false;
+
     if ( head == nullptr ) return;
 
     int maxCount = getMaximumcount();
@@ -127,8 +125,8 @@ void StringTracker::printCounters( ostream& out ) const
     for ( int i = maxCount; i > 0; i-- )
     {
         // 1. Check if any node has this specific count before printing header
-        bool hasItems = false;
         Node* checker = head;
+        hasItems = false;
         while ( checker != nullptr )
         {
             if ( checker->count == i )
@@ -140,8 +138,10 @@ void StringTracker::printCounters( ostream& out ) const
         }
 
         // If no items have this count, skip to next number
-        if ( !hasItems ) continue;
-
+        if ( !hasItems ) 
+        {
+            continue;
+        }
 
         // 2. Print spacing and header
         if ( firstSectionPrinted )
@@ -149,9 +149,10 @@ void StringTracker::printCounters( ostream& out ) const
             out << endl;
         }
 
-        out << "************************************************************" << endl;
-        out << "* Phrases With Counts Of: " << i << endl;
-        out << "************************************************************" << endl;
+        out << "***************************************************************************" << endl;
+        out << "*  Phrases With Counts Of: " << i << endl;
+        out << "***************************************************************************" << endl;
+
         
         firstSectionPrinted = true;
 

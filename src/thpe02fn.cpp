@@ -53,8 +53,41 @@ void readData(ifstream& fin, StringTracker& stringTracker)
 
     while(fin >> tempString )
     {
-        stringTracker.addString(tempString);
+
+        if ( tempString.empty() )
+        {
+            continue;
+        }
+
+        cleanWord( tempString );
+
+
+        if (stringTracker.findString( tempString ))
+        {
+            stringTracker.incrementCount( tempString );
+        } else
+        {
+            stringTracker.addString( tempString );
+        }
     }
 
     cout << endl;
+}
+
+void cleanWord( string& word ) 
+{
+    for (char &c : word)
+    {
+        c = tolower( c );
+    }
+
+    while (!word.empty() && ispunct(word.front()))
+    {
+        word.erase(0,1);
+    }
+    while (!word.empty() && ispunct(word.back()))
+    {
+        word.pop_back();
+    }
+
 }
