@@ -61,18 +61,57 @@ void StringTracker::clear()
 // Print only the phrases (string values) in sorted order.
 void StringTracker::printPhrases( ostream& out ) const
 {
-    // setting pointer to head
+    char currentHeader = '\0';
+    char firstChar;
+    int colCount = 0;
+
+    // check for null head
+    if (head == nullptr) {
+        return;
+    }
+
     Node* current = head;
 
-    // going through linked list
     while ( current != nullptr )
     {
-        out << current->value;
+         firstChar = current->value[0];
 
-        if ( current->next != nullptr )
-            out << ",";
+        if (firstChar != currentHeader) {
+            if ( colCount != 0 )
+            {
+                out << "colCount !=0" << endl;
+                colCount = 0;
+            }
+
+            if (currentHeader != '\0') {
+                out << endl ;
+            }
+
+            currentHeader = firstChar;
+
+            out << "************************************************************" << endl;
+            out << "* Phrases Starting With: " << firstChar << endl;
+            out << "************************************************************" << endl;
+            colCount = 0;
+        }
+
+        if (colCount > 0) {
+            out << " ";
+        }
+
+        out << left << setw(25) << current->value;
+        colCount++;
+
+        if (colCount == 3) {
+            out << endl; 
+            colCount = 0;
+        }
 
         current = current->next;
+    }
+
+    if (colCount > 0) {
+        out << endl;
     }
 }
 
@@ -80,16 +119,68 @@ void StringTracker::printPhrases( ostream& out ) const
 // Print only the counters (count values) in order.
 void StringTracker::printCounters( ostream& out ) const
 {
-    Node* current = head;
+    if ( head == nullptr ) return;
 
-    while ( current != nullptr )
+    int maxCount = getMaximumcount();
+    bool firstSectionPrinted = false;
+
+    // Loop from highest count down to 1
+    for ( int i = maxCount; i > 0; i-- )
     {
-        out << current->count;
+        // 1. Check if any node has this specific count before printing header
+        bool hasItems = false;
+        Node* checker = head;
+        while ( checker != nullptr )
+        {
+            if ( checker->count == i )
+            {
+                hasItems = true;
+                break;
+            }
+            checker = checker->next;
+        }
 
-        if ( current->next != nullptr )
-            out << ",";
+        // If no items have this count, skip to next number
+        if ( !hasItems ) continue;
 
-        current = current->next;
+
+        // 2. Print spacing and header
+        if ( firstSectionPrinted )
+        {
+            out << endl;
+        }
+
+        out << "************************************************************" << endl;
+        out << "* Phrases With Counts Of: " << i << endl;
+        out << "************************************************************" << endl;
+        
+        firstSectionPrinted = true;
+
+        // 3. Print items with this count
+        int colCount = 0;
+        Node* current = head;
+        
+        while ( current != nullptr )
+        {
+            if ( current->count == i )
+            {
+                out << left << setw(25) << current->value;
+                colCount++;
+
+                if ( colCount == 3 )
+                {
+                    out << endl;
+                    colCount = 0;
+                }
+            }
+            current = current->next;
+        }
+
+        // Clean up newline for the section
+        if ( colCount != 0 )
+        {
+            out << endl;
+        }
     }
 }
 
