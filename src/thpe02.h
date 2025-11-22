@@ -1,3 +1,5 @@
+#ifndef THPE02_H
+#define THPE02_H
 #include "stringTracker.h"
 #include <fstream>
 #include <iostream>
@@ -8,3 +10,4 @@ bool writeOutputFiles(ofstream& fout, char* argv[], StringTracker& stringTracker
 void readData(ifstream& fin, StringTracker& stringTracker);
 void cleanWord( string& word );
 
+#endif
