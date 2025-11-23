@@ -1,0 +1,25 @@
+        {
+            "version": "0.2.0",
+            "configurations": [
+                {
+                    "type": "java",
+                    "name": "Launch with data1.txt",
+                    "request": "launch",
+                    "mainClass": "edu.ncsu.csc216.heckman_primary_editor.HeckmanPrimaryEditor",
+                    "projectName": "thpe02",
+                    "args": [
+                        "data/data1.txt"
+                    ]
+                },
+                {
+                    "type": "java",
+                    "name": "Launch with data2.txt",
+                    "request": "launch",
+                    "mainClass": "edu.ncsu.csc216.heckman_primary_editor.HeckmanPrimaryEditor",
+                    "projectName": "thpe02",
+                    "args": [
+                        "data/data2.txt"
+                    ]
+                }
+            ]
+        }
