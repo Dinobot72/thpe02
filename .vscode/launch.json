@@ -1,25 +1,25 @@
+{
+    "version": "0.2.0",
+    "configurations": [
         {
-            "version": "0.2.0",
-            "configurations": [
-                {
-                    "type": "java",
-                    "name": "Launch with data1.txt",
-                    "request": "launch",
-                    "mainClass": "edu.ncsu.csc216.heckman_primary_editor.HeckmanPrimaryEditor",
-                    "projectName": "thpe02",
-                    "args": [
-                        "data/data1.txt"
-                    ]
-                },
-                {
-                    "type": "java",
-                    "name": "Launch with data2.txt",
-                    "request": "launch",
-                    "mainClass": "edu.ncsu.csc216.heckman_primary_editor.HeckmanPrimaryEditor",
-                    "projectName": "thpe02",
-                    "args": [
-                        "data/data2.txt"
-                    ]
-                }
-            ]
+            "name": "Run with dataset 1",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/bin/thpe02",
+            "args": ["data/data1.txt", "data/output1p.txt", "data/output1c.txt"],
+            "cwd": "${workspaceFolder}",
+            "console": "integratedTerminal",
+            "MIMode": "gdb"
+        },
+        {
+            "name": "Run with dataset 2",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/bin/thpe02",
+            "args": ["data/data2.txt", "data/output2p.txt", "data/output2c.txt"],
+            "cwd": "${workspaceFolder}",
+            "console": "integratedTerminal",
+            "MIMode": "gdb"
         }
+    ]
+}
